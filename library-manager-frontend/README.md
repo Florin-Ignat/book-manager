@@ -3,6 +3,10 @@
 # Prerequisites
 1. install node version 18.19 or higher
 2. install and run books_library_app_mock_server on port 3001
+3. Add this code in the index.js file of the server at line 7, this is needed for image upload. If you don't want to do this, just don't upload an image
+
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 ## Available Scripts
 
