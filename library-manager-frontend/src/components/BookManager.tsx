@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Typography, Tooltip, IconButton, Divider } from '@mui/material';
+import { Container, Typography, Tooltip, IconButton, Divider, Box } from '@mui/material';
 import Grid2 from '@mui/material/Grid2';
 import AddIcon from '@mui/icons-material/Add';
 import { useBooks } from '../hooks/useBooks';
@@ -59,8 +59,16 @@ const BookManager: React.FC = () => {
             {/* Divider */}
             <Divider />
 
-            {/* Book List */}
-            <BookList books={books || []} onEdit={handleOpenForm} onViewDetails={handleOpenDetails} refreshBooks={mutate} />
+            {/* If there are no books, show a message */}
+            {(!books || books.length === 0) ? (
+                <Box sx={{ textAlign: 'center', mt: 4 }}>
+                    <Typography variant="h6" color="textSecondary">
+                        No books available. Click the plus button to add your first book!
+                    </Typography>
+                </Box>
+            ) : (
+                <BookList books={books} onEdit={handleOpenForm} onViewDetails={handleOpenDetails} refreshBooks={mutate} />
+            )}
 
             {/* Modal for Creating or Editing a Book */}
             <BookFormModal

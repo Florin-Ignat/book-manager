@@ -20,8 +20,8 @@ const BookDetailsModal: React.FC<BookDetailsModalProps> = ({ open, book, onClose
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
                 width: { xs: 300, sm: 400 },
-                maxHeight: '90vh',  // Limit the modal height to 90% of the viewport
-                overflowY: 'auto',  // Enable vertical scrolling if content overflows
+                maxHeight: '90vh',  // Limit modal height for scrollable content
+                overflowY: 'auto',  // Enable vertical scrolling if needed
                 bgcolor: 'background.paper',
                 boxShadow: 24,
                 borderRadius: '10px',
@@ -57,13 +57,20 @@ const BookDetailsModal: React.FC<BookDetailsModalProps> = ({ open, book, onClose
                 <Typography variant="subtitle2" gutterBottom>
                     Genre: {book.genre}
                 </Typography>
-                <Typography variant="body2" gutterBottom>
+
+                {/* Description Text */}
+                <Typography
+                    variant="body2"
+                    sx={{
+                        whiteSpace: 'normal',  // Allow text to wrap
+                        wordBreak: 'break-word',  // Ensure long words break correctly
+                        overflowWrap: 'break-word',
+                    }}
+                    gutterBottom
+                >
                     {book.description}
                 </Typography>
 
-                <Button variant="contained" onClick={onClose} sx={{ marginTop: '20px' }}>
-                    Close
-                </Button>
             </Box>
         </Modal>
     );

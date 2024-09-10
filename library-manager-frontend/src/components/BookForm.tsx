@@ -60,19 +60,6 @@ const BookForm: React.FC<BookFormProps> = ({ initialValues, onSuccess }) => {
     return (
         <form onSubmit={formik.handleSubmit}>
             <Stack spacing={2}>
-
-                {/* Display existing image if available */}
-                {imageBase64 && (
-                    <Box sx={{ marginBottom: '20px' }}>
-                        <Typography variant="caption">Cover</Typography>
-                        <img
-                            src={imageBase64}
-                            alt={formik.values.title}
-                            style={{ maxWidth: '100%', borderRadius: '10px' }}
-                        />
-                    </Box>
-                )}
-
                 <TextField
                     fullWidth
                     label="Title"
@@ -114,7 +101,20 @@ const BookForm: React.FC<BookFormProps> = ({ initialValues, onSuccess }) => {
                 />
 
                 {/* Image Upload */}
-                <InputLabel>Upload Cover</InputLabel>
+                {/* Display existing image if available */}
+                {imageBase64 && (
+                    <Box sx={{ marginBottom: '20px' }}>
+                        <Typography variant="caption">Cover</Typography>
+                        <Box sx={{ textAlign: 'center', marginBottom: '20px' }}>
+                            <img
+                                src={imageBase64}
+                                alt={formik.values.title}
+                                style={{ maxWidth: '100%', maxHeight: '300px', borderRadius: '10px', objectFit: 'contain' }}
+                            />
+                        </Box>
+                    </Box>
+                )}
+                <InputLabel>{initialValues.image ? 'Update Cover' : 'Upload Cover'}</InputLabel>
                 <Input type="file" onChange={handleImageUpload} />
 
                 <Button type="submit" variant="contained" color="primary" fullWidth>
