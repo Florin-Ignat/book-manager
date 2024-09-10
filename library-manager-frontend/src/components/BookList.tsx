@@ -30,6 +30,7 @@ const BookList: React.FC<BookListProps> = ({ books, onEdit, onViewDetails, refre
                             '&:hover': {
                                 backgroundColor: '#f5f5f5',
                             },
+                            cursor: "pointer",
                             display: 'flex',
                             justifyContent: 'space-between',
                             alignItems: 'center',
